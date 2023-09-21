@@ -1,8 +1,10 @@
 import { queryBody } from "./consts";
 
-const queryBuilder = (name, launchStatus, sorting, page = 1) => {
+const queryBuilder = (name, launchStatus, sorting, page) => {
+  console.log(name, launchStatus, sorting, page);
+  const newBody = JSON.parse(JSON.stringify(queryBody));
   if (name !== "") {
-    queryBody.query.name = {
+    newBody.query.name = {
       $regex: name,
       $options: "i",
     };
@@ -10,13 +12,13 @@ const queryBuilder = (name, launchStatus, sorting, page = 1) => {
 
   switch (launchStatus) {
     case "success":
-      queryBody.query.success = true;
+      newBody.query.success = true;
       break;
     case "failed":
-      queryBody.query.success = false;
+      newBody.query.success = false;
       break;
     case "upcoming":
-      queryBody.query.upcoming = true;
+      newBody.query.upcoming = true;
       break;
     default:
       break;
@@ -24,22 +26,22 @@ const queryBuilder = (name, launchStatus, sorting, page = 1) => {
 
   switch (sorting) {
     case "a...z":
-      queryBody.options.sort = {
+      newBody.options.sort = {
         name: 1,
       };
       break;
     case "z...a":
-      queryBody.options.sort = {
+      newBody.options.sort = {
         name: -1,
       };
       break;
     case "old_to_new":
-      queryBody.options.sort = {
+      newBody.options.sort = {
         date_utc: 1,
       };
       break;
     case "new_to_old":
-      queryBody.options.sort = {
+      newBody.options.sort = {
         date_utc: -1,
       };
       break;
@@ -48,10 +50,9 @@ const queryBuilder = (name, launchStatus, sorting, page = 1) => {
   }
 
   if (page !== 1) {
-    queryBody.page = page;
+    newBody.options.page = page;
   }
-
-  return queryBody;
+  return newBody;
 };
 
 export default queryBuilder;
