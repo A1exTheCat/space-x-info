@@ -4,7 +4,9 @@ import { setLaunchStatus, setSortingStatus } from "../store/dataSlice";
 import { Row, Col, ButtonGroup, ToggleButton, Dropdown } from "react-bootstrap";
 import { statusButtons, sortBtn } from "../utils/consts";
 
+// FilterSortBtn component for filtering and sorting data
 const FilterSortBtn = () => {
+  // Redux hooks to dispatch actions and read state
   const dispatch = useDispatch();
   const launchStatus = useSelector(
     (state) => state.launchesData.dataQuery.launchStatus
@@ -13,10 +15,13 @@ const FilterSortBtn = () => {
     (state) => state.launchesData.dataQuery.sorting
   );
 
+  // Main rendering
   return (
     <Row className="my-4 justify-content-between">
+      {/* Column for launch status filter buttons */}
       <Col className="my-1" md="auto">
         <ButtonGroup>
+          {/* Loop through status buttons and render them */}
           {statusButtons.map((radio, idx) => (
             <ToggleButton
               key={idx}
@@ -33,12 +38,16 @@ const FilterSortBtn = () => {
           ))}
         </ButtonGroup>
       </Col>
+
+      {/* Column for sorting dropdown */}
       <Col className="my-1" md="auto">
         <Dropdown>
           <Dropdown.Toggle variant="primary" id="dropdown-basic">
             Sorting
           </Dropdown.Toggle>
+
           <Dropdown.Menu>
+            {/* Loop through sorting options and render them */}
             {sortBtn.map((btn, idx) => (
               <Dropdown.Item
                 key={idx}

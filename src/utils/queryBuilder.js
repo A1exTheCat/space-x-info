@@ -1,14 +1,22 @@
+// Importing the initial query body template from consts.js
 import { queryBody } from "./consts";
 
+// Utility function to build query for the SpaceX API based on user input and pagination info
 const queryBuilder = (text, launchStatus, sorting, page) => {
+  // Logging input parameters for debugging (optional)
   console.log(text, launchStatus, sorting, page);
+
+  // Deep copy the initial query body template to modify without altering the original
   const newBody = JSON.parse(JSON.stringify(queryBody));
+
+  // If text is provided, update the query to perform a text search
   if (text !== "") {
     newBody.query.$text = {
       $search: text,
     };
   }
 
+  // Update the query based on launchStatus (success, failed, upcoming)
   switch (launchStatus) {
     case "success":
       newBody.query.success = true;
@@ -23,6 +31,7 @@ const queryBuilder = (text, launchStatus, sorting, page) => {
       break;
   }
 
+  // Update the sorting option based on user's choice
   switch (sorting) {
     case "a...z":
       newBody.options.sort = {
@@ -48,10 +57,14 @@ const queryBuilder = (text, launchStatus, sorting, page) => {
       break;
   }
 
+  // If the page number is not 1, update the pagination option
   if (page !== 1) {
     newBody.options.page = page;
   }
+
+  // Return the modified query body
   return newBody;
 };
 
+// Exporting the queryBuilder function for use in other parts of the application
 export default queryBuilder;

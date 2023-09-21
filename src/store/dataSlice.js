@@ -1,15 +1,19 @@
+// Importing utilities from Redux Toolkit and the fetchData API call function
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchData } from "../http/spacexAPI";
 
+// Initial state of the 'dataSlice' slice of the store
 const initialState = {
-  data: [],
+  data: [], // Array to store the fetched data
   dataQuery: {
+    // Object to store query parameters
     text: "",
     launchStatus: "all",
     sorting: "",
     currentPage: 1,
   },
   uiStatus: {
+    // Object to manage UI state like loading and error statuses
     isLoading: false,
     isError: false,
     nextPage: false,
@@ -17,6 +21,7 @@ const initialState = {
   },
 };
 
+// Asynchronous action to fetch data based on query parameters
 export const fetchQueriedData = createAsyncThunk(
   "data/fetchQueriedData",
   async ({ text, launchStatus, sorting }) => {
@@ -25,6 +30,7 @@ export const fetchQueriedData = createAsyncThunk(
   }
 );
 
+// Asynchronous action to fetch next page of data
 export const fetchNextPageData = createAsyncThunk(
   "data/fetchNextPageData",
   async (query) => {
@@ -39,10 +45,11 @@ export const fetchNextPageData = createAsyncThunk(
   }
 );
 
+// Creating the Redux slice
 const dataSlice = createSlice({
   name: "dataSlice",
   initialState,
-
+  // Reducers for manipulating state synchronously
   reducers: {
     setLaunchStatus: (state, action) => {
       state.dataQuery.launchStatus = action.payload;
@@ -54,6 +61,7 @@ const dataSlice = createSlice({
       state.dataQuery.text = action.payload;
     },
   },
+  // Reducers for handling asynchronous actions
   extraReducers: (builder) => {
     builder
       .addCase(fetchQueriedData.pending, (state) => {
@@ -87,6 +95,6 @@ const dataSlice = createSlice({
   },
 });
 
+// Exporting actions and the reducer
 export const { setLaunchStatus, setSortingStatus, setText } = dataSlice.actions;
-
 export default dataSlice.reducer;

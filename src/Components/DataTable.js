@@ -8,6 +8,7 @@ import ErrorBtn from "./ErrorBtn";
 import noPicture from "../assets/pictures/noPicture.svg";
 
 const DataTable = () => {
+  // Hooks for dispatching actions and selecting state
   const dispatch = useDispatch();
   const { text, launchStatus, sorting } = useSelector(
     (state) => state.launchesData.dataQuery
@@ -17,16 +18,19 @@ const DataTable = () => {
   );
   const isError = useSelector((state) => state.launchesData.uiStatus.isError);
 
+  // Fetch data when query parameters change
   useEffect(() => {
     dispatch(fetchQueriedData({ text, launchStatus, sorting }));
   }, [text, launchStatus, sorting, dispatch]);
-
+  // Selecting the data to display
   const launches = useSelector((state) => state.launchesData.data);
 
+  // Render loading spinner if data is being loaded
   if (isLoading) {
     return <Loader />;
   }
 
+  // Render an error button if an error occurs
   if (isError) {
     return <ErrorBtn />;
   }
@@ -43,6 +47,7 @@ const DataTable = () => {
     );
   }
 
+  // Render a message if no data is found
   return (
     <Row className="mt-4">
       <Col>

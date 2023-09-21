@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# SpaceX Launches Information Platform 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This React project is an interface to view and interact with SpaceX launches data. It integrates with the SpaceX API, provides filtering, searching, and sorting capabilities, and showcases the data in a table format. The application is designed using React-Bootstrap for the UI and Redux for state management.
 
-## Available Scripts
+## 📑 Table of Contents
 
-In the project directory, you can run:
+- [Features](#-features)
+- [File Structure](#-file-structure)
+- [Setup and Configuration](#-setup-and-configuration)
+- [Constants and Utilities](#-constants-and-utilities)
+- [Layout and Main Application Structure](#-layout-and-main-application-structure)
+- [Main Data Display and Management](#-main-data-display-and-management)
+- [User Interface for Filtering and Searching](#-user-interface-for-filtering-and-searching)
 
-### `npm start`
+## 🌟 Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 📊 View a table of SpaceX launches with relevant details.
+- 📝 Filter launches based on status: Success, Failed, Upcoming, etc.
+- 🔄 Sort data based on various parameters.
+- 🔍 Search for specific launches.
+- 🎡 Infinite scroll functionality to load more data as the user scrolls.
+- 📱 Responsive design that adjusts to different screen sizes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🗂 File Structure
 
-### `npm test`
+- **App.js**: Application's main entry point.
+- **store.js**: Redux store configuration.
+- **dataSlice.js**: Redux slice for SpaceX data.
+- **index.js & spacexAPI.js**: API interactions using Axios.
+- **consts.js**: Application constants and default query structure.
+- **dateConvertor.js**: Date conversion utility.
+- **queryBuilder.js**: Utility for API query construction.
+- **AppContainer.js**: Main layout container.
+- **DataTable.js**: Table displaying SpaceX data.
+- **ErrorBtn.js**: UI component for error handling.
+- **FilterSortBtn.js**: Filtering and sorting controls.
+- **Form.js**: Search input form.
+- **Header.js**: Main header with image.
+- **Loader.js**: Loading spinner UI.
+- **InfiniteScroll.js**: Infinite scroll handler.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Step by step
 
-### `npm run build`
+## ⚙ Setup and Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 🔨 Configure Redux store in **store.js**.
+- 📦 Define state, actions, and reducers in **dataSlice.js**.
+- 🌐 Set up Axios for API calls in **index.js**.
+- 🎛 Use **spacexAPI.js** for data-fetching functions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠 Constants and Utilities
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 🗄 **consts.js**: Houses constants like API's base URL, button configurations, and default API query structure.
+- 📅 **dateConvertor.js**: Utility to format dates.
+- 🔍 **queryBuilder.js**: Constructs API queries based on given parameters.
 
-### `npm run eject`
+## 🎨 Layout and Main Application Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 🖼 **App.js**: Entry point, sets the main application structure.
+- 🏗 **AppContainer.js**: Container for main content.
+- 📜 **Header.js**: Application title and main image.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📊 Main Data Display and Management
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 📋 **DataTable.js**: Table of SpaceX data, handles data fetching, loading, and error states.
+- ⌛ **Loader.js**: Spinner displayed during data loading.
+- ⚠ **ErrorBtn.js**: Button for network error handling.
+- 📜 **InfiniteScroll.js**: Enables infinite scrolling functionality.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🎛 User Interface for Filtering and Searching
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 🎚 **FilterSortBtn.js**: Toggle buttons and dropdown for data filtering and sorting.
+- 🖋 **Form.js**: Search input for filtering launches by text.
