@@ -30,8 +30,8 @@ export const statusButtons = [
 
 // Array of buttons to sort data by different criteria
 export const sortBtn = [
-  { name: "Launch date (Old first)", value: "old_to_new" },
-  { name: "Launch date (New first)", value: "new_to_old" },
-  { name: "Name (A...Z)", value: "a...z" },
-  { name: "Name (Z...A)", value: "z...a" },
+  { name: "Launch date (Old to recent)", value: "old_to_new" },
+  { name: "Launch date (Recent to old)", value: "new_to_old" },
+  { name: "Mission name (A-Z)", value: "a...z" },
+  { name: "Mission name (Z-A)", value: "z...a" },
 ];

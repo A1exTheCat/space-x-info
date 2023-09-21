@@ -43,7 +43,7 @@ const FilterSortBtn = () => {
       <Col className="my-1" md="auto">
         <Dropdown>
           <Dropdown.Toggle variant="primary" id="dropdown-basic">
-            Sorting
+            Sort
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
