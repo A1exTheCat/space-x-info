@@ -1,12 +1,11 @@
 import { queryBody } from "./consts";
 
-const queryBuilder = (name, launchStatus, sorting, page) => {
-  console.log(name, launchStatus, sorting, page);
+const queryBuilder = (text, launchStatus, sorting, page) => {
+  console.log(text, launchStatus, sorting, page);
   const newBody = JSON.parse(JSON.stringify(queryBody));
-  if (name !== "") {
-    newBody.query.name = {
-      $regex: name,
-      $options: "i",
+  if (text !== "") {
+    newBody.query.$text = {
+      $search: text,
     };
   }
 

@@ -1,19 +1,19 @@
 import React from "react";
-import { setName } from "../store/dataSlice";
+import { setText } from "../store/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, FormControl } from "react-bootstrap";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const launchName = useSelector((state) => state.launchesData.dataQuery.name);
+  const launchName = useSelector((state) => state.launchesData.dataQuery.text);
   return (
     <Row className="my-4">
       <Col>
         <FormControl
           type="text"
-          placeholder="Search by name"
+          placeholder="Search..."
           value={launchName}
-          onChange={(e) => dispatch(setName(e.currentTarget.value))}
+          onChange={(e) => dispatch(setText(e.currentTarget.value))}
         />
       </Col>
     </Row>

@@ -9,7 +9,7 @@ import noPicture from "../assets/pictures/noPicture.svg";
 
 const DataTable = () => {
   const dispatch = useDispatch();
-  const { name, launchStatus, sorting } = useSelector(
+  const { text, launchStatus, sorting } = useSelector(
     (state) => state.launchesData.dataQuery
   );
   const isLoading = useSelector(
@@ -18,8 +18,8 @@ const DataTable = () => {
   const isError = useSelector((state) => state.launchesData.uiStatus.isError);
 
   useEffect(() => {
-    dispatch(fetchQueriedData({ name, launchStatus, sorting }));
-  }, [name, launchStatus, sorting, dispatch]);
+    dispatch(fetchQueriedData({ text, launchStatus, sorting }));
+  }, [text, launchStatus, sorting, dispatch]);
 
   const launches = useSelector((state) => state.launchesData.data);
 
@@ -49,9 +49,9 @@ const DataTable = () => {
         <Table responsive bordered className="text-center align-middle">
           <thead>
             <tr className="text-center align-middle">
-              <th>Flight number</th>
-              <th>Patch picture</th>
-              <th>Name</th>
+              <th>Mission number</th>
+              <th>Mission patch</th>
+              <th>Mission name</th>
               <th>Launch Date</th>
               <th>Launch Status</th>
               <th>Details</th>

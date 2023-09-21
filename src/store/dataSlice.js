@@ -4,7 +4,7 @@ import { fetchData } from "../http/spacexAPI";
 const initialState = {
   data: [],
   dataQuery: {
-    name: "",
+    text: "",
     launchStatus: "all",
     sorting: "",
     currentPage: 1,
@@ -19,8 +19,8 @@ const initialState = {
 
 export const fetchQueriedData = createAsyncThunk(
   "data/fetchQueriedData",
-  async ({ name, launchStatus, sorting }) => {
-    const response = await fetchData(name, launchStatus, sorting);
+  async ({ text, launchStatus, sorting }) => {
+    const response = await fetchData(text, launchStatus, sorting);
     return response;
   }
 );
@@ -28,9 +28,9 @@ export const fetchQueriedData = createAsyncThunk(
 export const fetchNextPageData = createAsyncThunk(
   "data/fetchNextPageData",
   async (query) => {
-    const { name, launchStatus, sorting, currentPage } = query;
+    const { text, launchStatus, sorting, currentPage } = query;
     const response = await fetchData(
-      name,
+      text,
       launchStatus,
       sorting,
       currentPage + 1
@@ -50,14 +50,15 @@ const dataSlice = createSlice({
     setSortingStatus: (state, action) => {
       state.dataQuery.sorting = action.payload;
     },
-    setName: (state, action) => {
-      state.dataQuery.name = action.payload;
+    setText: (state, action) => {
+      state.dataQuery.text = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchQueriedData.pending, (state) => {
         state.uiStatus.isLoading = true;
+        state.uiStatus.nextPageLoading = false;
       })
       .addCase(fetchQueriedData.fulfilled, (state, action) => {
         state.uiStatus.isLoading = false;
@@ -82,11 +83,10 @@ const dataSlice = createSlice({
       })
       .addCase(fetchNextPageData.rejected, (state) => {
         state.uiStatus.isError = true;
-        state.uiStatus.nextPageLoading = false;
       });
   },
 });
 
-export const { setLaunchStatus, setSortingStatus, setName } = dataSlice.actions;
+export const { setLaunchStatus, setSortingStatus, setText } = dataSlice.actions;
 
 export default dataSlice.reducer;
