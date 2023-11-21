@@ -3,9 +3,6 @@ import { queryBody } from "./consts";
 
 // Utility function to build query for the SpaceX API based on user input and pagination info
 const queryBuilder = (text, launchStatus, sorting, page) => {
-  // Logging input parameters for debugging (optional)
-  console.log(text, launchStatus, sorting, page);
-
   // Deep copy the initial query body template to modify without altering the original
   const newBody = JSON.parse(JSON.stringify(queryBody));
 
