@@ -1,5 +1,5 @@
 // Utility function to convert a date string into a formatted date string
-export const dateConvertor = (dateString) => {
+export const dateConvertor = (dateString: string):string => {
   // Create a new Date object from the input dateString
   const date = new Date(dateString);
 

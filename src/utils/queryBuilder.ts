@@ -1,10 +1,14 @@
 // Importing the initial query body template from consts.js
 import { queryBody } from "./consts";
+import { QueryBody } from "./consts";
+
+export type LaunchStatus = 'success' | 'failed' | 'upcoming';
+export type Sorting = 'a...z' | 'z...a' | 'old_to_new' | 'new_to_old';
 
 // Utility function to build query for the SpaceX API based on user input and pagination info
-const queryBuilder = (text, launchStatus, sorting, page) => {
+const queryBuilder = (text: string | undefined, launchStatus: LaunchStatus, sorting: Sorting, page: number): QueryBody => {
   // Deep copy the initial query body template to modify without altering the original
-  const newBody = JSON.parse(JSON.stringify(queryBody));
+  const newBody: QueryBody = JSON.parse(JSON.stringify(queryBody));
 
   // If text is provided, update the query to perform a text search
   if (text !== "") {

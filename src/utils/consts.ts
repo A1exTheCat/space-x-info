@@ -3,7 +3,43 @@ export const baseUrl = "https://api.spacexdata.com/v5/launches";
 
 // Initial query body to be sent in the POST request to the SpaceX API
 // Specifies the fields to be selected and initial pagination settings
-export const queryBody = {
+export interface QueryBody {
+  query: {
+    $text?: {
+      $search?: string,
+    };
+    success?: boolean;
+    upcoming?: boolean;
+};
+  options: {
+    select: {
+      details: number;
+      flight_number: number;
+      name: number;
+      upcoming: number;
+      links: number;
+      success: number;
+      date_utc: number;
+    };
+    limit: number;
+    page: number;
+    sort?: {
+      name?: number;
+      date_utc?: number;
+    };
+  };
+}
+
+export interface FetchedData {
+  
+}
+
+interface Btn {
+  name: string;
+  value: string;
+}
+
+export const queryBody: QueryBody = {
   query: {}, // Empty query to fetch all data by default
   options: {
     select: {
@@ -21,7 +57,7 @@ export const queryBody = {
 };
 
 // Array of buttons to filter data by launch status
-export const statusButtons = [
+export const statusButtons: Btn[] = [
   { name: "All", value: "all" },
   { name: "Success", value: "success" },
   { name: "Failed", value: "failed" },
@@ -29,7 +65,7 @@ export const statusButtons = [
 ];
 
 // Array of buttons to sort data by different criteria
-export const sortBtn = [
+export const sortBtn: Btn[] = [
   { name: "Launch date (Old to recent)", value: "old_to_new" },
   { name: "Launch date (Recent to old)", value: "new_to_old" },
   { name: "Mission name (A-Z)", value: "a...z" },
